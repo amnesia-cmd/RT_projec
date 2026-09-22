@@ -739,5 +739,6 @@ async function startServer() {
 }
 
 export { app };
+export default app;
 
 startServer();
