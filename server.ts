@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Increase payload limit for high-resolution radiographic images
 app.use(express.json({ limit: "50mb" }));
@@ -740,6 +740,4 @@ async function startServer() {
 
 export { app };
 
-if (!process.env.VERCEL) {
-  startServer();
-}
+startServer();
