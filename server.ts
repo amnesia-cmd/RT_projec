@@ -738,4 +738,8 @@ async function startServer() {
   });
 }
 
-startServer();
+export { app };
+
+if (!process.env.VERCEL) {
+  startServer();
+}
