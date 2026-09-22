@@ -79,7 +79,28 @@ export default function App() {
         }),
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get("content-type") || "";
+    const responseText = await response.text();
+
+    if (!response.ok) {
+      let serverMessage = responseText;
+      if (contentType.includes("application/json")) {
+        try {
+          const parsed = JSON.parse(responseText);
+          serverMessage = parsed.error || parsed.message || responseText;
+        } catch {
+          // Keep the raw response when it is not valid JSON.
+        }
+      }
+      throw new Error(`Inspection API failed (${response.status}): ${serverMessage}`);
+    }
+
+    let data: any;
+    try {
+      data = JSON.parse(responseText);
+    } catch {
+      throw new Error(`Inspection API returned non-JSON data: ${responseText.slice(0, 1000)}`);
+    }
 
       if (data.success && data.report) {
         setInspectionReport(data.report);
