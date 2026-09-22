@@ -1,0 +1,6 @@
+{
+  "name": "RT Scan Defect Detector",
+  "description": "Industrial Radiographic Testing (RT) defect detector and analysis system for welds and castings, identifying cracks, porosity, slag inclusions, lack of fusion, shrinkage, and wall thinning with ASME/API/ISO inspection reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
