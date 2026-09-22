@@ -741,4 +741,8 @@ async function startServer() {
 export { app };
 export default app;
 
-startServer();
+// Vercel runs the exported Express app as a serverless function.
+// Only start a local listener during local development.
+if (!process.env.VERCEL) {
+  startServer();
+}
